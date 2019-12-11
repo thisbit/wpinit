@@ -15,4 +15,6 @@ Before you use this script chmod +x script.sh it
 
 ### I plan to add the database creation in this script as well as seting up wprig dependencies
 I made this for my own use ... so use if you like ... but thats it
+I use zsh if you use bash, change first line accordingly
+Run as sudo if your sever root is outside of your home folder
 
