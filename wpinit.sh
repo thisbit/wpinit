@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 # ask user to give value to variables
 
 # the project title
