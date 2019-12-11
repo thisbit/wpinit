@@ -1,5 +1,5 @@
 # wpinit
-## This is a wordpress install script I use to automate wp setup on my machines
+This is a wordpress install script I use to automate wp setup on my machines
 
 ## What does it do?
 * It downloads latest WP
