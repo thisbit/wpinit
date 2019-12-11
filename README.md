@@ -14,6 +14,6 @@ This is a wordpress install script I use to automate wp setup on my machines
 
 ### I plan to add the database creation in this script as well as seting up wprig dependencies automatically
 * I made this for my own use ... so use if you like ... but thats it
-* I use zsh if you use bash, change first line accordingly
+* I use zsh, if you use bash change first line accordingly
 * Run as sudo if your sever root is outside of your home folder
 * On location promt enter dot if you want to install in current directory
