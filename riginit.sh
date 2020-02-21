@@ -49,7 +49,7 @@
 ​
 	# get .htaccess
 		wget https://raw.githubusercontent.com/thisbit/myhtaccess/master/.htaccess
-		mv ./.htaccess ./$project/.htaccess
+		mv ./.htaccess ./$project/htaccess
 	# get humans.txt
 		wget https://raw.githubusercontent.com/thisbit/humans/master/humans.txt
 		mv ./humans.txt ./$project/humans.txt
