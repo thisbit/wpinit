@@ -101,7 +101,7 @@
 	# get js dependencies with gulpfile (I think composer needs to be global on machine)
 	
 # FIX PROJECT PREFERENCES (with user that is part of group www-data or _www (on mac))
-	sudo chown -R $owner:www-data $project
+	# sudo chown -R $owner:www-data $project
 	# sudo chmod -R 777 $project
 
 # CREATE EMPTY DATABASE, use same name in wp-config
