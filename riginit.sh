@@ -96,7 +96,7 @@
 # SET WPRIG
 	wget https://github.com/wprig/wprig/archive/master.zip
 	unzip master.zip
-	mv wprig-master ./$project/wp-content/themes/wprig
+	mv wprig-master ./$project/wp-content/themes/wprig-$project
 	rm -rf master.zip
 	# get js dependencies with gulpfile (I think composer needs to be global on machine)
 	
