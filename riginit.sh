@@ -1,49 +1,39 @@
 #!/bin/bash
 # ASK FOR VARIABLES
+	# WARNING
+		read -p "# WARNING: is this the folder you want to install in? (y/n)" yn
 	# the project title
-		read -p "# ENTER THE PROJECT TITLE: " project
-	# the project path
-		read -p "# WHERE TO PUT THE PROJECT: " path
-	# the project owner (member of groups _www on mac or www-data on linux)
-		read -p "# WHO OWNS THE PROJECT (local sudo user): " owner
-	# the db name
-		read -p "# ENTER THE DATABASE NAME : " dbname
-	# the db user
-		read -p "# ENTER THE DATABASE USER (for wp to use): " dbuser
-	# the db password
-		read -p "# ENTER THE DATABASE PASSWORD (for wp to use): " dbpass
-	# the db prefix
-		read -p "# ENTER THE DATABASE PREFIX (for wp to use): " dbpref
-	# the mysql user
-		read -p "# ENTER THE MYSQL USERNAME (pre-exhisting with createdb priviledges): " mysqlusr
-		# the mysql password
-		read -p "# ENTER THE MYSQL PASSWORD (for createdb priviledges): " mysqlpwd
+		read -p "# PROJECT TITLE: " project
 
+	# the project owner (member of groups _www on mac or www-data on linux)
+		read -p "# USER (local sudo user): " owner
+
+	# the db password
+		read -p "# PASSWORD (for wp and mysql to use): " pass
+
+	# open in browser (firefox, chromium, opera, qutebrowser):
+		read -p "# YOUR BROWSER (firefox, chromium, opera, qutebrowser): " browser
+
+	# choose one editor (subl, atom, code):
+		read -p "# YOUR EDITOR (subl, atom, code): " editor
 
 # SET WP
 	# get wordpress
 		wget https://wordpress.org/latest.zip
 		unzip latest.zip
-		mv wordpress $path/$project
+		mv wordpress ./$project
 		rm -rf latest.zip
-​	
+​
 	# wp-config
 ​
 		# saltkeys
 			# get saltkeys
-				# wget https://api.wordpress.org/secret-key/1.1/salt/ -O ./$project/keys.tmp
-			#write saltkeys into wp-config
-				# sed -i.tmp "49,56d" ./$project/wp-config.php
-				# sed -i.tmp "1d;48r ./$project/keys.tmp" ./$project/wp-config.php
-			# clean-up tmp files
-				# rm ./$project/*.tmp
-​
 			grep -A 1 -B 50 'since 2.6.0' ./$project/wp-config-sample.php > ./$project/wp-config.php
 			wget -O - https://api.wordpress.org/secret-key/1.1/salt/ >> ./$project/wp-config.php
 			grep -A 50 -B 3 'Table prefix' ./$project/wp-config-sample.php >> ./$project/wp-config.php
 ​
 			# db info
-				sed -i.tmp "s/database_name_here/$dbname/;s/username_here/$dbuser/;s/password_here/$dbpass/;s/wp_/$dbpref/" ./$project/wp-config.php
+				sed -i.tmp "s/database_name_here/$project/;s/username_here/$owner/;s/password_here/$pass/;s/wp_/wpstroj_/" ./$project/wp-config.php
 			# clean-up tmp files
 				rm ./$project/*.tmp
 ​
@@ -99,10 +89,28 @@
 	mv wprig-master ./$project/wp-content/themes/wprig-$project
 	rm -rf master.zip
 	# get js dependencies with gulpfile (I think composer needs to be global on machine)
-	
+
 # FIX PROJECT PREFERENCES (with user that is part of group www-data or _www (on mac))
 	# sudo chown -R $owner:www-data $project
 	# sudo chmod -R 777 $project
 
 # CREATE EMPTY DATABASE, use same name in wp-config
-	sudo mysql -u$mysqlusr -p$mysqlpwd -e "CREATE DATABASE $dbname"
+	sudo mysql -u$owner -p$pass -e "CREATE DATABASE $project"
+
+# create sites .conf file
+	sudo sed "s/template/$project/g" /etc/apache2/sites-available/template.stroj.conf.template > /etc/apache2/sites-available/$project.stroj.conf
+
+# create symlink in sites-enabled
+	sudo ln -s /etc/apache2/sites-available/$project.stroj.conf /etc/apache2/sites-enabled
+
+# add redirect to hosts
+	sudo -- sh -c "echo '\n'127.0.1.1\ $project.stroj >> /etc/hosts"
+
+# reboot apache (agnostic for all linux/unix)
+	sudo apachectl -k graceful
+
+# open project in firefox
+	$browser $project.stroj
+
+# open theme project in editor
+	$editor ./$project/wp-content
