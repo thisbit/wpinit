@@ -1,7 +1,7 @@
 #!/bin/bash
 # ASK FOR VARIABLES
 	# WARNING
-		read -p "# WARNING: is this the folder you want to install in? (y/n)" yn
+		read -p "# WARNING: is this the folder you want to install in? (y/n) " yn
 	# the project title
 		read -p "# PROJECT TITLE: " project
 
@@ -91,14 +91,30 @@
 	# get js dependencies with gulpfile (I think composer needs to be global on machine)
 
 # FIX PROJECT PREFERENCES (with user that is part of group www-data or _www (on mac))
-	# sudo chown -R $owner:www-data $project
-	# sudo chmod -R 777 $project
+	sudo chown -Rf www-data:www-data ./$project
+	sudo chmod -R 777 ./$project
 
 # CREATE EMPTY DATABASE, use same name in wp-config
 	sudo mysql -u$owner -p$pass -e "CREATE DATABASE $project"
 
 # create sites .conf file
-	sudo sed "s/template/$project/g" /etc/apache2/sites-available/template.stroj.conf.template > /etc/apache2/sites-available/$project.stroj.conf
+	# set a variable to hold content for the apache config file
+	TEMPLATE="<VirtualHost *:80>
+    ServerName template.stroj
+    ServerAlias www.template.stroj
+    ServerAdmin webmaster@template.stroj
+    DocumentRoot /home/ek/serv/template
+
+    <Directory /home/ek/serv/template>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/template.stroj-error.log
+    CustomLog ${APACHE_LOG_DIR}/template.stroj-access.log combined
+</VirtualHost>"
+	# pipe variable output to sed and save modified outputin to file
+	echo "$TEMPLATE" | sudo sed s/template/$project/g > /etc/apache2/sites-available/$project.stroj.conf
 
 # create symlink in sites-enabled
 	sudo ln -s /etc/apache2/sites-available/$project.stroj.conf /etc/apache2/sites-enabled
