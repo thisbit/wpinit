@@ -1,7 +1,7 @@
 #!/bin/bash
 # ASK FOR VARIABLES
 	# WARNING
-		read -p "# WARNING: is this the folder you want to install in? (y/n) " yn
+		echo  "# WARNING: is this the folder you want to install in?"
 	# the project title
 		read -p "# PROJECT TITLE: " project
 
