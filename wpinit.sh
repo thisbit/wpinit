@@ -89,13 +89,6 @@
 		wget https://github.com/WPPlugins/wp-cerber/archive/master.zip
 		unzip master.zip -d ./$project/wp-content/plugins/
 		rm -rf master.zip
-​
-# SET WPRIG
-	# wget https://github.com/wprig/wprig/archive/master.zip
-	# unzip master.zip
-	# mv wprig-master ./$project/wp-content/themes/wprig-$project
-	# rm -rf master.zip
-	# get js dependencies with gulpfile (I think composer needs to be global on machine)
 
 # SET THEME
 	enfold_child_css_header="/*
