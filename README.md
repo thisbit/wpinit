@@ -1,5 +1,5 @@
 # wpinit
-This repo contains a wordpress install and uninstall scripts that I use daily on my Linux box. It can work with OSX too with slight modifications, but there I find it makes more sense to use http://vagrantup.com with http://vccw.cc instead of this. If it isn't obvious from file names, riginit.sh is the installer and rigrm.sh is the uninstaller. I plan to simplify and extend the functionality of the files in repo as I find time and learn more.
+This repo contains a wordpress install and uninstall scripts that I use daily on my Linux box. It can work with OSX too with slight modifications, but there I find it makes more sense to use http://vagrantup.com with http://vccw.cc instead of this. On a Mac I use Local By Flywheel, as it is one clisk install and has blueprints. If it isn't obvious from file names, riginit.sh is the installer and rigrm.sh is the uninstaller. I plan to simplify and extend the functionality of the files in repo as I find time and learn more.
 
 ## What does it do?
 * Downloads latest WP
