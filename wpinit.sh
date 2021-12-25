@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # ASK FOR USER INPUT
 	# WARNING
 		echo  "# WARNING: run this in your webroot!"
@@ -37,7 +37,7 @@
 			# get saltkeys
 			grep -A 1 -B 50 'since 2.6.0' ./$project/wp-config-sample.php > ./$project/wp-config.php
 			wget -O - https://api.wordpress.org/secret-key/1.1/salt/ >> ./$project/wp-config.php
-			grep -A 50 -B 3 'Table prefix' ./$project/wp-config-sample.php >> ./$project/wp-config.php
+			grep -A 50 -B 3 'WordPress database table prefix' ./$project/wp-config-sample.php >> ./$project/wp-config.php
 ​
 			# db info
 				sed -i.tmp "s/database_name_here/$project/;s/username_here/$owner/;s/password_here/$pass/;s/wp_/wpstroj_/" ./$project/wp-config.php
