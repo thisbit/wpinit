@@ -7,7 +7,7 @@
 * Wordpress uninstaller only shell based ( wprm.sh )
 * Wordpress plugins installer based on WP-CLI ( wpcliplugins.sh )
 
-## Dependends
+## Depends
 * Linux (works on debianites, and should work with not much modifications on other linuxes/macs too)
 * Admin privileges
 * MySql server has to be set up prior, and user with root db privileges should be same as your linux/mac admin user
