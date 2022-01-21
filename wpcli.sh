@@ -24,7 +24,7 @@
 
 
 # get and clean new wordpress
-mkdir $project && cd $project && wp core download && wp theme delete --all --force && wp plugin delete --all && wp post delete 1 2 3
+mkdir $project && cd $project && wp core download
 
 # set base wp-config
 wp config create --dbname=$project --dbuser=$owner --dbpass=$pass --locale=hr
@@ -58,10 +58,13 @@ wp db create
 	sudo -- sh -c "echo '\n'127.0.1.1\ $project.stroj >> /etc/hosts"
 
 # reboot apache (agnostic for all linux/unix)
-	# sudo apachectl -k graceful
-	sudo systemctl restart apache2
+	sudo apachectl -k graceful
+	# sudo systemctl restart apache2
 # install wordpress
 wp core install --url=$project.stroj --title=$project --admin_user=$owner --admin_password=$pass --admin_email=$owner@$project.stroj
+
+# clean my wp
+wp theme delete --all --force && wp plugin delete --all && wp post delete 1 2 3
 
 # SET THEME
 	enfold_child_css_header="/*
@@ -80,13 +83,13 @@ wp core install --url=$project.stroj --title=$project --admin_user=$owner --admi
 		then
 		wget https://github.com/wprig/wprig/archive/master.zip
 		unzip master.zip
-		mv wprig-master ./$project/wp-content/themes/wprig-$project
+		mv wprig-master ./wp-content/themes/wprig-$project
 		rm -rf master.zip
 	elif [ $theme = "2" ]
 		then
 		wget https://github.com/Automattic/_s/archive/master.zip
 		unzip master.zip
-		mv _s-master ./$project/wp-content/themes/_s-$project
+		mv _s-master ./wp-content/themes/_s-$project
 		rm -rf master.zip
 		# see if you can automate string replacement "_s" with "$project"
 	elif [ $theme = "3" ]
@@ -102,9 +105,9 @@ wp core install --url=$project.stroj --title=$project --admin_user=$owner --admi
 	elif [ $theme = "5" ]
 		then
 		wp theme install ../wordpress-pro/enfold*/enfold*.zip 
-		mkdir ./$project/wp-content/themes/enfold-child/
-		echo "$enfold_child_css_header" > ./$project/wp-content/themes/enfold-child/styles.css
-		sed -i "s/project/$project/g" ./$project/wp-content/themes/enfold-child/styles.css
+		mkdir ./wp-content/themes/enfold-child/
+		echo "$enfold_child_css_header" > ./wp-content/themes/enfold-child/styles.css
+		sed -i "s/project/$project/g" ./wp-content/themes/enfold-child/styles.css
 	else
 		echo "ERROR, you failed to choose an available theme!"
 		exit
