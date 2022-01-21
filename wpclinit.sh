@@ -1,6 +1,6 @@
 #!/bin/bash
 # in this version we are switching to WP-CLI tool, and using BASH shell because plugin select procedure requires it
-
+echo "THIS IS THE WORDPRESS INSTALLER (wp-cli based)"
 # get the data in
 		echo  "# WARNING: run this in your webroot!"
 	# the project title

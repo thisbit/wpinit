@@ -1,5 +1,5 @@
 ### destroy a wordpress installation and all traces thereof
-
+echo "THIS IS THE WORDPRESS UNINSTALLER"
 # get variables
 	# the project title
 		read -p "# ENTER THE PROJECT TITLE: " project

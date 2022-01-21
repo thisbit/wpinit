@@ -1,6 +1,6 @@
 #!/bin/bash
 # PLUGINS SECTION
-
+	echo "THIS IS THE WORDPRESS PLUGIN BUNDLE INSTALLER"
 	# https://www.putorius.net/create-multiple-choice-menu-bash.html
 	PS3='Which plugins do you need: '
 	pluginBundles=("Development" "Speed&SEO" "Security" "Administrative" "Quit")

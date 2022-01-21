@@ -1,6 +1,7 @@
 #!/bin/sh
 # ASK FOR USER INPUT
 	# WARNING
+		echo "THIS IS THE WORDPRESS INSTALLER (old)"
 		echo  "# WARNING: run this in your webroot!"
 	# the project title
 		read -p "# PROJECT TITLE: " project
