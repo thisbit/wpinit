@@ -1,5 +1,5 @@
 # wpinit
-### THIS REPO IS FOR PERSOAL USE. USE IT WITH CAUSION BECAUSE IT CAN BRAKE YOUR SYSTEM.
+### This repo is for persoal use. use it with causion because it can brake your system.
 
 ## Contents
 * Wordpress installer based on WP-CLI ( wpclinit.sh )
