@@ -1,33 +1,31 @@
-# wpinit
-### This repo is for persoal use. use it with causion because it can brake your system.
+# WpInit
+### This repo is for personal use, use with caution
 
 ## Contents
 * Wordpress installer based on WP-CLI ( wpclinit.sh )
-* Wordpress installer only shell based ( wpinit.sh )
+* Wordpress installer only shell based ( wpinit.sh ) - deprecated
 * Wordpress uninstaller only shell based ( wprm.sh )
-* Wordpress plugins installer based on WP-CLI ( wpcliplugins.sh )
+* Wordpress plugins installer based on WP-CLI ( wpcliplugins.sh ) - deprecated
 
 ## Depends
-* Linux (works on debianites, and should work with not much modifications on other linuxes/macs too)
-* Admin privileges
-* MySql server has to be set up prior, and user with root db privileges should be same as your linux/mac admin user
-* Apache2 should also be set up prior
-* WP-CLI should be installed prior
-* Some installs work with locally stored premium themes and plugins ( enfold, generatepress, oxygenbuilder )
-* Internet access
+* Linux or Mac (tested with debian, for mac some modifications needed)
+* LAMP installed
+* WPCLI installed
+* Wordpress packages are in some cases premium producst so you need to have these for these options of the script to work
 
 ## What does it do?
-* Sets up local server with custom domain
-* Installs Wordpress and links it to database
-* If chosen, removes all default content from wordpress, themes, plugins, posts and pages
-* Installs chosen theme, its child theme if applicable and activates it
-* Installes chosen installs plugin bundle, and in some cases activates it
-* Uninstalls the entire thing, the files, database and server settings
+* Sets up a local domain like projectname.domain
+* Installs wordpress and database
+* Removes all defaults content in wp install, unless you select "wp defaults" option 
+* Installs a set of themes and acompanied plugins, or builder and acompenied tools
+* Optionally installs a plugin bundle of your choice
+* WpRm removes the entire thing, files and database entry
 
 ## Some comments
-* wpinit is the older file, I am keeping it for archive mostly
-* read the script before running, it simple, there are comments, dont brake your system
-* its recomended to create alias to more easily use
-* enter your web root when running the install script
+* wpinit is the older file, I am keeping it for archive mostly, same with wpcliplugins
+* Please read the script before running, it is simple, there are comments, it uses "sudo", dont brake your system
+* I recomend you to create alias to more easily use
+* Enter your web root when running the install script
+* Do not use this on your server, in the line 176 permission of the entire WordPress installation is made writeable for all. This is ok on the local machine, but in no way ok on the server.
 
 ### Enjoy!
