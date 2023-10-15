@@ -1,17 +1,16 @@
 ### destroy a wordpress installation and all traces thereof
 echo "THIS IS THE WORDPRESS UNINSTALLER"
 # get variables
+		echo  "# WARNING: run this in your webroot!"
 	# the project title
 		read -p "# ENTER THE PROJECT TITLE: " project
-	# the project path
-		read -p "# WHERE IS THE PROJECT: " path
 	# the project owner (member of groups _www on mac or www-data on linux)
 		read -p "# USER (local sudo user): " owner
 	# the db password
 		read -p "# PASSWORD: " pass
 
 # delete wordpress directory
-rm -rf $path/$project
+rm -rf ./$project
 
 # delete mysql database
 sudo mysql -u$owner -p$pass -e "DROP DATABASE $project"
