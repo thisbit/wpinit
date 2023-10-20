@@ -123,10 +123,11 @@ if [[ $theme != "7" ]]
 		# clean my wp
 		wp theme delete --all --force && wp plugin delete --all && wp post delete 1 2 3
 		# get theme & customize
-		wp theme install ../wordpress-pro/bare-bones-fse-starter.zip
+		# wp theme install ../wordpress-pro/bare-bones-fse-starter.zip
+		wp theme install https://wpdevelopment.courses/products/bare-bones-block-starter.zip
 		mv ./wp-content/themes/bare-bones-fse-starter-main ./wp-content/themes/$project
 		echo "$fse_starter" > ./wp-content/themes/$project/style.css
-		sed -i "s/project/$project/g" ./wp-content/themes/$project/style.css
+		sed -i "s/project/$project/g" ./wp-content/themes/$project/style.css 
 
 		#activate theme
 		wp theme activate $project
